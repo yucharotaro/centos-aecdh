@@ -1,0 +1,19 @@
+version:    '3.7'
+services:
+    centos:
+        build: ./centos7/
+        volumes:
+            - ./centos7/contents:/var/www/html/contents
+            - ./centos7/httpd/conf:/etc/httpd/conf
+            - ./centos7/httpd/conf.d:/etc/httpd/conf.d
+            - ./centos7/httpd/conf.modules.d:/etc/httpd/conf.modules.d
+        environment:
+            TZ: "Asia/Tokyo"
+        ports:
+            - "8080:80"
+            - "4443:443"
+        tty: true
+        stdin_open: true
+        privileged: true
+        command: /sbin/init
+
